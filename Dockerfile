@@ -1,8 +1,7 @@
 # Container image that runs your code
 FROM node:lts-slim
 
-ADD vuepress /vuepress
-WORKDIR /vuepress
+ADD vuepress /
 
 RUN corepack enable \
   && yarn set version stable \
