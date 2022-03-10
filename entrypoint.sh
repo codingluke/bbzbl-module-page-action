@@ -1,4 +1,7 @@
 #!/bin/sh -l
 
+pwd
+cd /vuepress
 yarn run info
-ls -la
+pwd
+ls -la /github/workspace
