@@ -17,8 +17,8 @@
     "markdown-it-texmath": "^0.9.7"
   },
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
+    "remote:dev": "vuepress dev remote",
+    "remote:build": "vuepress build remote",
     "info": "vuepress info"
   }
 }

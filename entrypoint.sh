@@ -2,7 +2,5 @@
 
 cd /vuepress
 ln -sf /github/workspace ./remote 
-pwd
+yarn run remote:build
 ls -la ./remote/
-cd remote
-pwd
