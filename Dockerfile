@@ -4,7 +4,9 @@ FROM node:lts-slim
 ADD vuepress /vuepress
 WORKDIR /vuepress
 
-RUN corepack enable \
+RUN apt-get -y update \
+  && apt-get -y install git \
+  && corepack enable \
   && yarn set version stable \
   && yarn install
 
