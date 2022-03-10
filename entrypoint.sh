@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
 cd /vuepress
-ln -sf /github/workspace ./remote 
+cp -r /github/workspace remote
 yarn run remote:build
-ls -la ./remote/
+ls -la ./remote/.vuepress/dist
