@@ -1,7 +1,8 @@
 #!/bin/sh -l
 
-pwd
 cd /vuepress
-yarn run info
+ln -sf /github/workspace ./remote 
 pwd
-ls -la /github/workspace
+ls -la ./remote/
+cd remote
+pwd
