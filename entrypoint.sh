@@ -2,7 +2,8 @@
 
 cd /vuepress
 cp -r /github/workspace ./remote
-mv -r ./vuepress ./remote/.vuepress
+cp -r ./.vuepress ./remote/.vuepress
+ls -la ./remote
 yarn run remote:build
 ls -la ./remote/.vuepress/dist
 
