@@ -3,6 +3,4 @@ name: 'BBZBL Vuepress'
 description: 'Create Vuepress Page'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.who-to-greet }}
+  image: 'docker://hodelbbzbl/module-page-github-action:latest'
