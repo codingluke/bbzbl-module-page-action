@@ -5,7 +5,7 @@ textmathPlugin = require("markdown-it-texmath");
 
 module.exports = {
   // site config
-  base: "/bbzbl-slides/page/",
+  base: "/bbzbl-module-page-template/",
   lang: 'en-US',
   title: 'BBZBL - Modul 404',
   description: 'This is my first VuePress site',

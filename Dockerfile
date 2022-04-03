@@ -8,7 +8,8 @@ RUN apt-get -y update \
   && apt-get -y install git \
   && corepack enable \
   && yarn set version stable \
-  && yarn install
+  && yarn install \
+  && npm install -g @marp-team/marp-cli@1.4.0
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
