@@ -7,7 +7,7 @@ ls -la ./remote
 yarn run remote:build
 ls -la ./remote/.vuepress/dist
 
-cp -r ./remote/.vuepress/dist /github/workspace/page # TODO: Make dist folder configurable
+cp -r ./remote/.vuepress/dist /github/workspace/docs # TODO: Make dist folder configurable
 
 cd /github/workspace
 remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" && \
