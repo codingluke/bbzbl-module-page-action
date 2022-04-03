@@ -1,13 +1,13 @@
 #!/bin/sh -l
 
 cd /vuepress
-cp -r /github/workspace ./remote
+cp -r /github/workspace/pages ./remote # TODO: Make pages folder configurable
 cp -r ./.vuepress ./remote/.vuepress
 ls -la ./remote
 yarn run remote:build
 ls -la ./remote/.vuepress/dist
 
-cp -r ./remote/.vuepress/dist /github/workspace/page
+cp -r ./remote/.vuepress/dist /github/workspace/page # TODO: Make dist folder configurable
 
 cd /github/workspace
 remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" && \
