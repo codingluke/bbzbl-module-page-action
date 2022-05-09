@@ -1,0 +1,24 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: bbzbl-module-page-action
+  labels:
+    app: module-page
+    tier: action
+spec:
+  selector:
+    matchLabels:
+      app: module-page
+      tier: action
+  strategy:
+    type: RollingUpdate 
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: module-page
+        tier: action
+    spec:
+      containers:
+      - name: bbzbl-module-page-action
+        image: hodelbbzbl/module-page-github-action:latest

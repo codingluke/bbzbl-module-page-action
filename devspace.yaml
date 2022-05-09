@@ -1,0 +1,67 @@
+version: v1beta11
+
+# `vars` specifies variables which may be used as ${VAR_NAME} in devspace.yaml
+vars:
+- name: IMAGE
+  value: hodelbbzbl/module-page-github-action
+
+# `deployments` tells DevSpace how to deploy this project
+deployments:
+- name: bbzbl-module-page-action
+  # This deployment uses `kubectl` but you can also define `helm` deployments
+  kubectl:
+    manifests:
+    - ./kube/kustomization/
+    kustomize: true
+
+images:
+  app:
+    image: ${IMAGE}
+    dockerfile: ./Dockerfile
+    context: .
+    entrypoint:
+      - yarn
+      - run
+      - remote:dev
+
+# `dev` only applies when you run `devspace dev`
+dev:
+  # `dev.sync` configures a file sync between our Pods in k8s and your local project files
+  sync:
+  - imageSelector: ${IMAGE}
+    localSubPath: ./dev/pages
+    containerPath: /vuepress/remote
+    excludePaths:
+    - .git/
+    - .vuepress/
+    - node_modules/
+  - imageSelector: ${IMAGE}
+    localSubPath: ./vuepress/remote/.vuepress
+    containerPath: /vuepress/remote/.vuepress
+    excludePaths:
+      - .temp/
+  ports:
+  - imageSelector: ${IMAGE}
+    forward:
+    - port: 8080
+      remotePort: 8080
+  # replacePods:
+  #   - imageSelector: ${IMAGE}
+  #     patches:
+  #       - op: replace
+  #         path: spec.containers[0].command
+  #         value: ["yarn", "run", "remote:dev"]
+
+# `profiles` lets you modify the config above for different environments (e.g. dev vs production)
+profiles:
+  # This profile is called `production` and you can use it for example using: devspace deploy -p production
+  # We generally recommend using the base config without any profiles as optimized for development (e.g. image build+push is disabled)
+- name: production
+# This profile adds our image to the config so that DevSpace will build, tag and push our image before the deployment
+  merge:
+    images:
+      app:
+        image: ${IMAGE} # Use the value of our `${IMAGE}` variable here (see vars above)
+        dockerfile: ./Dockerfile
+        tags:
+          - latest

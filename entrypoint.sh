@@ -5,7 +5,6 @@ rm -rf /github/workspace/docs # cleanup
 # VuePress
 cd /vuepress
 cp -r /github/workspace/pages ./remote # TODO: Make pages folder configurable
-cp -r ./.vuepress ./remote/.vuepress
 ls -la ./remote
 sed -i 's/\.\.\/slides/\.\/slides/g' ./remote/README.md
 yarn run remote:build
